@@ -1,0 +1,46 @@
+{
+  "name": "den.ooo",
+  "version": "1.0.0",
+  "author": "Samuel Kopp (https://samuelkopp.de)",
+  "license": "Apache-2.0",
+  "description": "The sleek, feature-rich module registry for Deno. 📦",
+  "funding": "https://github.com/sponsors/boywithkeyboard",
+  "repository": "github:dendotooo/den.ooo",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "./dist/index.d.ts",
+    "./dist/index.mjs",
+    "./dist/index.cjs"
+  ],
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.cjs"
+      }
+    }
+  },
+  "scripts": {
+    "build": "builder --esm --cjs && tsc",
+    "test": "npm run build && tsc && node test.mjs"
+  },
+  "devDependencies": {
+    "@boywithkeyboard/builder": "^0.4.1",
+    "@gitbeaker/rest": "^39.21.2",
+    "@sinclair/typebox": "^0.31.23",
+    "@types/node": "^20.9.0",
+    "lru-cache": "^10.0.2",
+    "octokit": "^3.1.1",
+    "semver": "^7.5.4",
+    "typescript": "^5.2.2"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
