@@ -33,7 +33,7 @@
   "devDependencies": {
     "@boywithkeyboard/builder": "^0.4.1",
     "@gitbeaker/rest": "^39.21.2",
-    "@sinclair/typebox": "^0.31.23",
+    "@sinclair/typebox": "^0.31.24",
     "@types/node": "^20.9.0",
     "lru-cache": "^10.0.2",
     "octokit": "^3.1.1",
