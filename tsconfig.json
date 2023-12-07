@@ -13,16 +13,16 @@
     "emitDeclarationOnly": true,
     "esModuleInterop": true,
     "moduleResolution": "bundler",
-    "outDir": "dist",
+    "outDir": "build",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "incremental": true
   },
   "include": [
-    "./src/**/*.ts"
+    "src/**/*.ts"
   ],
   "exclude": [
-    "dist",
+    "build",
     "node_modules"
   ]
 }
