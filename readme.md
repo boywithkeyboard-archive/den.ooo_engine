@@ -12,9 +12,7 @@ npm i den.ooo
 import { Proxy } from 'den.ooo'
 import { DenoAdapter } from 'den.ooo/adapters'
 import { GitHub, GitLab, NPM } from 'den.ooo/resolvers'
-```
 
-```ts
 const proxy = new Proxy({
   resolvers: [
     GitHub,
