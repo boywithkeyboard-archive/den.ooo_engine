@@ -22,8 +22,7 @@ const proxy = new Proxy({
   ... // see below for more detailed customization
 })
 
-proxy
-  .serveWith(DenoAdapter)
+proxy.serveWith(DenoAdapter)
 ```
 
 ### Customization
