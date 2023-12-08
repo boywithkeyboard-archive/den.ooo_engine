@@ -31,7 +31,7 @@
     "test": "npm run build && tsc && node test.mjs"
   },
   "devDependencies": {
-    "@boywithkeyboard/builder": "^0.4.1",
+    "@boywithkeyboard/builder": "^0.4.2",
     "@gitbeaker/rest": "^39.25.0",
     "@sinclair/typebox": "^0.31.28",
     "@types/node": "^20.10.4",
