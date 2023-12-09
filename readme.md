@@ -2,6 +2,17 @@
 
 ### Setup
 
+#### Deno
+
+`deno.json`
+```json
+{
+  "den.ooo": "https://den.ooo/npm/den.ooo@1.0.0"
+}
+```
+
+#### Node.js
+
 ```bash
 npm i den.ooo
 ```
@@ -9,11 +20,10 @@ npm i den.ooo
 ### Usage
 
 ```ts
-import { Proxy } from 'den.ooo'
-import { DenoAdapter } from 'den.ooo/adapters'
+import { Registry } from 'den.ooo'
 import { GitHub, GitLab, NPM } from 'den.ooo/resolvers'
 
-const proxy = new Proxy({
+const registry = new Registry({
   resolvers: [
     GitHub,
     GitLab,
@@ -22,7 +32,11 @@ const proxy = new Proxy({
   ... // see below for more detailed customization
 })
 
-proxy.serveWith(DenoAdapter)
+// Deno
+await registry.serve()
+
+// Cloudflare Workers
+export default registry
 ```
 
 ### Customization
