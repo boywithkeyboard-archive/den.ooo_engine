@@ -1,6 +1,7 @@
 import * as semver from 'semver'
 import { Resolver } from '.'
 import { ModuleData } from './resolver'
+import { isDev } from './is_dev'
 
 export type VersionCache = {
   /**
@@ -81,10 +82,26 @@ export class Registry {
     const url = new URL(req.url)
     , pieces = url.pathname.split('/')
 
-    if (this.options.aliases[pieces[1]]) {
-      pieces[1] = this.options.aliases[pieces[1]]
-      
-      url.pathname = pieces.join('/')
+    , originalPathname = url.pathname.split('/')
+
+    let wasAlias = false
+
+    if (pieces[1].includes('@')) {
+      if (this.options.aliases[pieces[1].split('@')[0]]) {
+        pieces[1] = this.options.aliases[pieces[1].split('@')[0]] + '@' + pieces[1].split('@')[1]
+        
+        url.pathname = pieces.join('/')
+  
+        wasAlias = true
+      }
+    } else {
+      if (this.options.aliases[pieces[1]]) {
+        pieces[1] = this.options.aliases[pieces[1]]
+        
+        url.pathname = pieces.join('/')
+  
+        wasAlias = true
+      }
     }
 
     const resolver = this.#resolvers.filter(r => {
@@ -106,7 +123,17 @@ export class Registry {
           status: 404
         })
 
-      data.version = getLatestVersion(versions)
+      const version = getLatestVersion(versions)
+
+      data.version = version
+
+      if (wasAlias) {
+        originalPathname[1] += `@${version}`
+
+        return Response.redirect(`${isDev() ? 'http' : 'https'}://${this.domain}${originalPathname.join('/')}`, 307)
+      } else {
+        return Response.redirect(resolver.getRedirectUrl(this, data as ModuleData), 307)
+      }
     }
 
     const result = await resolver.resolveModule(this, data as ModuleData, {

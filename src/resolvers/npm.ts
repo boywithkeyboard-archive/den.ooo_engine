@@ -1,4 +1,5 @@
 import { encodeHex } from '../hex'
+import { isDev } from '../is_dev'
 import { Resolver } from '../resolver'
 
 export const NPM = new Resolver({
@@ -98,5 +99,9 @@ export const NPM = new Resolver({
         ...(options.typesHeader && { 'x-typescript-types': `https://esm.sh/${data.name}@${data.version}${data.filePath === '/' ? '' : data.filePath}?target=es2022` })
       }
     }
+  },
+
+  getRedirectUrl(registry, data) {
+    return `${isDev() ? 'http' : 'https'}://${registry.domain}/npm/${data.name}@${data.version}${data.filePath === '/' ? '' : data.filePath}`
   }
 })

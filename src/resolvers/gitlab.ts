@@ -34,7 +34,7 @@ export const GitLab = new Resolver({
 
   async fetchVersions(registry, data) {
     return []
-    
+
     // const cachedVersions = await registry.versionCache.get<string[]>(`gl:${data.name}`)
 
     // if (cachedVersions)
@@ -114,6 +114,10 @@ export const GitLab = new Resolver({
         ...(typesFile && { 'x-typescript-types': typesFile })
       }
     }
+  },
+
+  getRedirectUrl(registry, data) {
+    return `${isDev() ? 'http' : 'https'}://${registry.domain}/gl/${data.name}@${data.version}${data.filePath}`
   }
 })
 

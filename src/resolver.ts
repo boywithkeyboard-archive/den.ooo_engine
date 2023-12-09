@@ -13,6 +13,7 @@ export class Resolver {
   parseUrl
   fetchVersions
   resolveModule
+  getRedirectUrl
 
   constructor(options: {
     pathname: RegExp,
@@ -29,10 +30,12 @@ export class Resolver {
       content: string | null
       headers?: Record<string, string>
     }>
+    getRedirectUrl: (registry: Registry, data: ModuleData) => string
   }) {
     this.pathname = options.pathname
     this.parseUrl = options.parseUrl
     this.fetchVersions = options.fetchVersions
     this.resolveModule = options.resolveModule
+    this.getRedirectUrl = options.getRedirectUrl
   }
 }

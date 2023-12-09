@@ -113,6 +113,10 @@ export const GitHub = new Resolver({
         ...(typesFile && { 'x-typescript-types': typesFile })
       }
     }
+  },
+
+  getRedirectUrl(registry, data) {
+    return `${isDev() ? 'http' : 'https'}://${registry.domain}/gh/${data.name}@${data.version}${data.filePath}`
   }
 })
 
