@@ -5,6 +5,7 @@ import { filePathToContentType } from '../file_path_to_content_type'
 import { encodeHex } from '../hex'
 import { isDev } from '../is_dev'
 import { ModuleData, Resolver } from '../resolver'
+import { safelyRewriteImports } from '../safely_rewrite_imports'
 
 let gh: Octokit | undefined
 
@@ -97,7 +98,10 @@ export const GitHub = new Resolver({
         content: null
       }
 
-    const content = await res.arrayBuffer()
+    let content = await res.text()
+
+    if (options.importMapResolution)
+      content = await resolveImports(content, data)
 
     await registry.fileCache.set(hex, content)
 
@@ -131,4 +135,13 @@ async function resolveTypesFile(registry: Registry, data: ModuleData): Promise<s
     return null
 
   return `${isDev() ? 'http' : 'https'}://${registry.domain}/gh/${data.name}@${data.version}${filePath}`
+}
+
+async function resolveImports(content: string, data: ModuleData): Promise<string> {
+  const res = await fetch(`https://raw.githubusercontent.com/${data.name}/${data.version}/deno.json`)
+
+  if (!res.ok)
+    return content
+
+  return safelyRewriteImports(content, await res.text())
 }

@@ -26,7 +26,7 @@ export class Resolver {
         importMapResolution: boolean
       }
     ) => Promise<{
-      content: ArrayBuffer | null
+      content: string | null
       headers?: Record<string, string>
     }>
   }) {

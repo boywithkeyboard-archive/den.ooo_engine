@@ -86,7 +86,7 @@ export const NPM = new Resolver({
         content: null
       }
 
-    const content = await res.arrayBuffer()
+    const content = await res.text()
 
     await registry.fileCache.set(hex, content)
 

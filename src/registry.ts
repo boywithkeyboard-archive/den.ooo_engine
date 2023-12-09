@@ -11,8 +11,8 @@ export type VersionCache = {
 }
 
 export type FileCache = {
-  set: (key: string, value: ArrayBuffer) => Promise<void>
-  get: (key: string) => Promise<ArrayBuffer | undefined>
+  set: (key: string, value: string) => Promise<void>
+  get: (key: string) => Promise<string | undefined>
 }
 
 function getLatestVersion(versions: string[]) {
@@ -65,7 +65,7 @@ export class Registry {
       }
     }
     this.fileCache = fileCache ?? {
-      async set(_k: string, _v: ArrayBuffer) {},
+      async set(_k: string, _v: string) {},
       async get(_k: string) {
         return undefined
       }
