@@ -4,6 +4,7 @@ import * as semver from 'semver'
 import { Registry } from '..'
 import { filePathToContentType } from '../file_path_to_content_type'
 import { encodeHex } from '../hex'
+import { isDev } from '../is_dev'
 import { ModuleData, Resolver } from '../resolver'
 
 let gl: G<false> | undefined
@@ -130,5 +131,5 @@ async function resolveTypesFile(registry: Registry, data: ModuleData): Promise<s
   if (!res.ok)
     return null
 
-  return `https://${registry.domain}/gl/${data.name}@${data.version}${filePath}`
+  return `${isDev() ? 'http' : 'https'}://${registry.domain}/gl/${data.name}@${data.version}${filePath}`
 }
