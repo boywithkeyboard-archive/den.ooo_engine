@@ -129,5 +129,5 @@ async function resolveTypesFile(registry: Registry, data: ModuleData): Promise<s
   if (!res.ok)
     return null
 
-  return `https://${registry.domain}/gl/${data.name}@${data.version}${filePath}`
+  return `https://${registry.domain}/gh/${data.name}@${data.version}${filePath}`
 }
