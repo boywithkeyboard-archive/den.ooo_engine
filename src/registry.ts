@@ -134,6 +134,11 @@ export class Registry {
       } else {
         return Response.redirect(resolver.getRedirectUrl(this, data as ModuleData), 307)
       }
+    } else {
+      if (semver.valid(data.version) === null)
+        return new Response('Not Found', {
+          status: 404
+        })
     }
 
     const result = await resolver.resolveModule(this, data as ModuleData, {
