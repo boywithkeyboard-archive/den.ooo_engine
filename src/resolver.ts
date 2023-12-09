@@ -7,12 +7,12 @@ type ParseResult = {
 export class Resolver {
   pathname
   parseUrl
-  fetchModule
+  resolveModule
 
   constructor(options: {
     pathname: RegExp,
     parseUrl: (url: URL) => Promise<ParseResult>
-    fetchModule: (
+    resolveModule: (
       data: ParseResult,
       options: {
         typesHeader: boolean
@@ -25,6 +25,6 @@ export class Resolver {
   }) {
     this.pathname = options.pathname
     this.parseUrl = options.parseUrl
-    this.fetchModule = options.fetchModule
+    this.resolveModule = options.resolveModule
   }
 }
