@@ -12,7 +12,10 @@
   "files": [
     "./dist/index.d.ts",
     "./dist/index.mjs",
-    "./dist/index.cjs"
+    "./dist/index.cjs",
+    "./dist/resolvers/index.d.ts",
+    "./dist/resolvers/index.mjs",
+    "./dist/resolvers/index.cjs"
   ],
   "exports": {
     ".": {
@@ -23,6 +26,16 @@
       "require": {
         "types": "./dist/index.d.ts",
         "default": "./dist/index.cjs"
+      }
+    },
+    "./resolvers": {
+      "import": {
+        "types": "./dist/resolvers/index.d.ts",
+        "default": "./dist/resolvers/index.mjs"
+      },
+      "require": {
+        "types": "./dist/resolvers/index.d.ts",
+        "default": "./dist/resolvers/index.cjs"
       }
     }
   },
