@@ -40,7 +40,7 @@
     }
   },
   "scripts": {
-    "build": "esbuild src/index.ts --bundle --minify --format=cjs --target=es2022 --outfile=build/index.cjs && esbuild src/index.ts --bundle --minify --format=esm --target=es2022 --outfile=build/index.mjs && esbuild src/resolvers/index.ts --bundle --minify --format=cjs --target=es2022 --outfile=build/index.cjs && esbuild src/resolvers/index.ts --bundle --minify --format=esm --target=es2022 --outfile=build/index.cjs && tsc",
+    "build": "rimraf build && esbuild src/index.ts --bundle --minify --format=cjs --target=es2022 --outfile=build/index.cjs && esbuild src/index.ts --bundle --minify --format=esm --target=es2022 --outfile=build/index.mjs && esbuild src/resolvers/index.ts --bundle --minify --format=cjs --target=es2022 --platform=node --outfile=build/resolvers/index.cjs && esbuild src/resolvers/index.ts --bundle --minify --format=esm --platform=node --target=es2022 --outfile=build/resolvers/index.mjs && tsc",
     "test": "npm run build && tsc && node test.mjs",
     "prepublishOnly": "npm run build"
   },
@@ -50,8 +50,8 @@
     "@types/node": "^20.10.4",
     "@types/semver": "^7.5.6",
     "esbuild": "^0.19.8",
-    "lru-cache": "^10.1.0",
     "octokit": "^3.1.2",
+    "rimraf": "^5.0.5",
     "semver": "^7.5.4",
     "typescript": "^5.3.3"
   },
