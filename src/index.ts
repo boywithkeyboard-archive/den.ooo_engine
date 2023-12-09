@@ -1,3 +1,2 @@
-export { Adapter } from './adapter'
-export { Proxy } from './proxy'
+export { Registry } from './registry'
 export { Resolver } from './resolver'
