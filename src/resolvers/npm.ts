@@ -59,7 +59,7 @@ export const NPM = new Resolver({
 
     versions = Object.keys(versions)
 
-    await registry.versionCache.set(`npm:${data.name}`, versions, 900)
+    await registry.versionCache.set(`npm:${data.name}`, versions)
 
     return versions
   },
