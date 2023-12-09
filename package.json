@@ -2,52 +2,53 @@
   "name": "den.ooo",
   "version": "1.0.0",
   "author": "Samuel Kopp (https://samuelkopp.de)",
-  "license": "Apache-2.0",
+  "license": "MIT",
   "description": "The sleek, feature-rich module registry for Deno. 📦",
   "funding": "https://github.com/sponsors/boywithkeyboard",
   "repository": "github:dendotooo/den.ooo",
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
+  "main": "./build/index.cjs",
+  "module": "./build/index.mjs",
+  "types": "./build/index.d.ts",
   "files": [
-    "./dist/index.d.ts",
-    "./dist/index.mjs",
-    "./dist/index.cjs",
-    "./dist/resolvers/index.d.ts",
-    "./dist/resolvers/index.mjs",
-    "./dist/resolvers/index.cjs"
+    "./build/index.d.ts",
+    "./build/index.mjs",
+    "./build/index.cjs",
+    "./build/resolvers/index.d.ts",
+    "./build/resolvers/index.mjs",
+    "./build/resolvers/index.cjs"
   ],
   "exports": {
     ".": {
       "import": {
-        "types": "./dist/index.d.ts",
-        "default": "./dist/index.mjs"
+        "types": "./build/index.d.ts",
+        "default": "./build/index.mjs"
       },
       "require": {
-        "types": "./dist/index.d.ts",
-        "default": "./dist/index.cjs"
+        "types": "./build/index.d.ts",
+        "default": "./build/index.cjs"
       }
     },
     "./resolvers": {
       "import": {
-        "types": "./dist/resolvers/index.d.ts",
-        "default": "./dist/resolvers/index.mjs"
+        "types": "./build/resolvers/index.d.ts",
+        "default": "./build/resolvers/index.mjs"
       },
       "require": {
-        "types": "./dist/resolvers/index.d.ts",
-        "default": "./dist/resolvers/index.cjs"
+        "types": "./build/resolvers/index.d.ts",
+        "default": "./build/resolvers/index.cjs"
       }
     }
   },
   "scripts": {
-    "build": "builder --esm --cjs && tsc",
-    "test": "npm run build && tsc && node test.mjs"
+    "build": "esbuild src/index.ts --bundle --minify --format=cjs --target=es2022 --outfile=build/index.cjs && esbuild src/index.ts --bundle --minify --format=esm --target=es2022 --outfile=build/index.mjs && esbuild src/resolvers/index.ts --bundle --minify --format=cjs --target=es2022 --outfile=build/index.cjs && esbuild src/resolvers/index.ts --bundle --minify --format=esm --target=es2022 --outfile=build/index.cjs && tsc",
+    "test": "npm run build && tsc && node test.mjs",
+    "prepublishOnly": "npm run build"
   },
   "devDependencies": {
-    "@boywithkeyboard/builder": "^0.4.2",
     "@gitbeaker/rest": "^39.25.0",
     "@sinclair/typebox": "^0.31.28",
     "@types/node": "^20.10.4",
+    "esbuild": "^0.19.8",
     "lru-cache": "^10.1.0",
     "octokit": "^3.1.2",
     "semver": "^7.5.4",
