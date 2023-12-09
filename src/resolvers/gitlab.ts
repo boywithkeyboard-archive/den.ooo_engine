@@ -1,5 +1,3 @@
-import { Gitlab as G } from '@gitbeaker/core'
-import { Gitlab } from '@gitbeaker/rest'
 import * as semver from 'semver'
 import { Registry } from '..'
 import { filePathToContentType } from '../file_path_to_content_type'
@@ -7,8 +5,6 @@ import { encodeHex } from '../hex'
 import { isDev } from '../is_dev'
 import { ModuleData, Resolver } from '../resolver'
 import { safelyRewriteImports } from '../safely_rewrite_imports'
-
-let gl: G<false> | undefined
 
 export const GitLab = new Resolver({
   pathname: /^\/gl\/[^\/]+\/[^@\/]+(@[^@\/]+)?(\/[^\/]+)+\.(jsx|tsx|js|mjs|ts|wasm)$/,
@@ -37,39 +33,43 @@ export const GitLab = new Resolver({
   },
 
   async fetchVersions(registry, data) {
-    const cachedVersions = await registry.versionCache.get<string[]>(`gl:${data.name}`)
-
-    if (cachedVersions)
-      return cachedVersions
-
-    if (!gl)
-      gl = new Gitlab({
-        token: ''
-      })
-
-    const releases = await gl.ProjectReleases.all(data.name, {
-      maxPages: 10,
-      perPage: 100
-    })
+    return []
     
-    if (releases.length > 0) {
-      const versions = releases.map(release => release.tag_name).filter(v => semver.valid(v) !== null)
+    // const cachedVersions = await registry.versionCache.get<string[]>(`gl:${data.name}`)
 
-      await registry.versionCache.set(`gl:${data.name}`, versions)
+    // if (cachedVersions)
+    //   return cachedVersions
 
-      return versions
-    }
+    // if (!gl)
+    //   gl = new Gitlab({
+    //     token: ''
+    //   })
 
-    const tags = await gl.Tags.all(data.name, {
-      maxPages: 10,
-      perPage: 100
-    })
+    // // @ts-ignore
+    // const releases = await gl.ProjectReleases.all(data.name, {
+    //   maxPages: 10,
+    //   perPage: 100
+    // })
+    
+    // if (releases.length > 0) {
+    //   const versions = releases.map(release => release.tag_name).filter(v => semver.valid(v) !== null)
 
-    , versions = tags.map(tag => tag.name).filter(v => semver.valid(v) !== null)
+    //   await registry.versionCache.set(`gl:${data.name}`, versions)
 
-    await registry.versionCache.set(`gl:${data.name}`, versions)
+    //   return versions
+    // }
 
-    return versions
+    // // @ts-ignore
+    // const tags = await gl.Tags.all(data.name, {
+    //   maxPages: 10,
+    //   perPage: 100
+    // })
+
+    // , versions = tags.map(tag => tag.name).filter(v => semver.valid(v) !== null)
+
+    // await registry.versionCache.set(`gl:${data.name}`, versions)
+
+    // return versions
   },
 
   async resolveModule(registry, data, options) {

@@ -40,12 +40,11 @@
     }
   },
   "scripts": {
-    "build": "rimraf build && esbuild src/index.ts --bundle --minify --format=cjs --target=es2022 --outfile=build/index.cjs && esbuild src/index.ts --bundle --minify --format=esm --target=es2022 --outfile=build/index.mjs && esbuild src/resolvers/index.ts --bundle --minify --format=cjs --target=es2022 --platform=node --outfile=build/resolvers/index.cjs && esbuild src/resolvers/index.ts --bundle --minify --format=esm --platform=node --target=es2022 --outfile=build/resolvers/index.mjs && tsc",
+    "build": "rimraf build && esbuild src/index.ts --bundle --minify --format=cjs --target=es2022 --outfile=build/index.cjs && esbuild src/index.ts --bundle --minify --format=esm --target=es2022 --outfile=build/index.mjs && esbuild src/resolvers/index.ts --bundle --minify --format=cjs --target=es2022 --outfile=build/resolvers/index.cjs && esbuild src/resolvers/index.ts --bundle --minify --format=esm --target=es2022 --outfile=build/resolvers/index.mjs && tsc",
     "test": "npm run build && tsc && node test.mjs",
     "prepublishOnly": "npm run build"
   },
   "devDependencies": {
-    "@gitbeaker/rest": "^39.25.0",
     "@sinclair/typebox": "^0.31.28",
     "@types/node": "^20.10.4",
     "@types/semver": "^7.5.6",
