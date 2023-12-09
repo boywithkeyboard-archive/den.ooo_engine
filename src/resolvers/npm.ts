@@ -95,7 +95,7 @@ export const NPM = new Resolver({
       headers: {
         'cache-control': `public, max-age=${3600}`,
         'content-type': 'text/javascript; charset=utf-8',
-        ...(options.typesHeader && { 'x-typescript-types': `https://esm.sh/${data.name}@${data.version}${data.filePath === '/' ? '' : data.filePath}` })
+        ...(options.typesHeader && { 'x-typescript-types': `https://esm.sh/${data.name}@${data.version}${data.filePath === '/' ? '' : data.filePath}?target=es2022` })
       }
     }
   }
