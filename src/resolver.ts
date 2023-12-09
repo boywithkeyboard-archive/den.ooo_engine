@@ -1,3 +1,5 @@
+import { Registry } from '.'
+
 type ParseResult = {
   name: string
   version: string | null
@@ -7,24 +9,28 @@ type ParseResult = {
 export class Resolver {
   pathname
   parseUrl
+  fetchVersions
   resolveModule
 
   constructor(options: {
     pathname: RegExp,
-    parseUrl: (url: URL) => Promise<ParseResult>
+    parseUrl: (url: URL) => ParseResult
+    fetchVersions: (registry: Registry, data: ParseResult) => Promise<string[]>
     resolveModule: (
-      data: ParseResult,
+      registry: Registry,
+      data: Omit<ParseResult, 'version'> & { version: string },
       options: {
         typesHeader: boolean
         importMapResolution: boolean
       }
     ) => Promise<{
-      content: string | null
+      content: ArrayBuffer | null
       headers?: Record<string, string>
     }>
   }) {
     this.pathname = options.pathname
     this.parseUrl = options.parseUrl
+    this.fetchVersions = options.fetchVersions
     this.resolveModule = options.resolveModule
   }
 }
