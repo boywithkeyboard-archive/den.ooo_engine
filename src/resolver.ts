@@ -6,6 +6,8 @@ type ParseResult = {
   filePath: string
 }
 
+export type ModuleData = Omit<ParseResult, 'version'> & { version: string }
+
 export class Resolver {
   pathname
   parseUrl
@@ -18,7 +20,7 @@ export class Resolver {
     fetchVersions: (registry: Registry, data: ParseResult) => Promise<string[]>
     resolveModule: (
       registry: Registry,
-      data: Omit<ParseResult, 'version'> & { version: string },
+      data: ModuleData,
       options: {
         typesHeader: boolean
         importMapResolution: boolean
