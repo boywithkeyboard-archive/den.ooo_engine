@@ -10,12 +10,7 @@
   "module": "./build/index.mjs",
   "types": "./build/index.d.ts",
   "files": [
-    "./build/index.d.ts",
-    "./build/index.mjs",
-    "./build/index.cjs",
-    "./build/resolvers/index.d.ts",
-    "./build/resolvers/index.mjs",
-    "./build/resolvers/index.cjs"
+    "build"
   ],
   "exports": {
     ".": {
