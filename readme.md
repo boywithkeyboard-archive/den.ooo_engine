@@ -7,7 +7,7 @@
 `deno.json`
 ```json
 {
-  "den.ooo": "https://den.ooo/npm/den.ooo@v1.0.0"
+  "den.ooo": "https://den.ooo/npm/den.ooo@1.0.0"
 }
 ```
 
