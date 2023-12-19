@@ -23,6 +23,7 @@
   ],
   "exclude": [
     "build",
+    "examples",
     "node_modules"
   ]
 }

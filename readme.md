@@ -52,3 +52,17 @@ export default registry
   - `aliases` *Record<string, string>*
   - `typesHeader` *boolean*
   - `importMapResolution` *boolean*
+
+### Examples
+
+Need inspiration?
+
+- ☁️ **Cloudflare Workers**
+
+  - [Module Aliases](https://github.com/dendotooo/den.ooo/blob/main/examples/cloudflare_workers/module_aliases.js)
+  - [Redis Version Cache (over HTTP)](https://github.com/dendotooo/den.ooo/blob/main/examples/cloudflare_workers/upstash_version_cache.js)
+
+- 🦕 **Deno**
+
+  - [Module Aliases](https://github.com/dendotooo/den.ooo/blob/main/examples/deno/module_aliases.js)
+  - [Redis Version Cache (over TCP)](https://github.com/dendotooo/den.ooo/blob/main/examples/deno/redis_version_cache.js)
