@@ -53,9 +53,13 @@ export default registry
   - `typesHeader` *boolean*
   - `importMapResolution` *boolean*
 
-### Examples
+### Want to deploy your own registry?
 
-Need inspiration?
+If you're interested in deploying your own version of den.ooo, feel free to **take inspiration from the below examples**, or if you don't want to waste too much time, [use our starter template for Railway](https://github.com/dendotooo/template) instead.
+
+[![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/template/zHcmpg?referralCode=_LFOM3)
+
+### Examples
 
 - ☁️ **Cloudflare Workers**
 
