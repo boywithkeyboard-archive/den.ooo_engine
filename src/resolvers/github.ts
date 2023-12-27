@@ -1,5 +1,4 @@
 import { Octokit } from 'octokit'
-import * as semver from 'semver'
 import { Registry } from '..'
 import { filePathToContentType } from '../file_path_to_content_type'
 import { encodeHex } from '../hex'
@@ -51,7 +50,7 @@ export const GitHub = new Resolver({
     })
     
     if (releases.length > 0) {
-      const versions = releases.map(release => release.tag_name).filter(v => semver.valid(v) !== null)
+      const versions = releases.map(release => release.tag_name)
 
       await registry.versionCache.set(`gh:${data.name}`, versions)
 
@@ -64,7 +63,7 @@ export const GitHub = new Resolver({
       per_page: 100
     })
 
-    , versions = tags.map(tag => tag.name).filter(v => semver.valid(v) !== null)
+    , versions = tags.map(tag => tag.name)
 
     await registry.versionCache.set(`gh:${data.name}`, versions)
 

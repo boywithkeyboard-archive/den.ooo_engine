@@ -1,4 +1,3 @@
-import * as semver from 'semver'
 import { Registry } from '..'
 import { filePathToContentType } from '../file_path_to_content_type'
 import { encodeHex } from '../hex'
