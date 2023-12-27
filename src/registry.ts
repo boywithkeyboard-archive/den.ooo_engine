@@ -16,12 +16,15 @@ export type FileCache = {
   get: (key: string) => Promise<string | undefined>
 }
 
-function getLatestVersion(versions: string[]) {
-  versions = versions.filter(version => semver.valid(version) !== null) // just for safety
+function getLatestVersion(versions: string[], enforceSemVer: boolean) {
+  if (enforceSemVer) {
+    versions = versions.filter(version => semver.valid(version) !== null)
+    versions = semver.sort(versions)
+  } else {
+    versions = versions.sort()
+  }
 
-  versions = semver.rsort(versions)
-
-  return versions[0]
+  return versions[versions.length - 1]
 }
 
 export class Registry {
@@ -34,6 +37,7 @@ export class Registry {
     aliases: Record<string, string>
     typesHeader: boolean
     importMapResolution: boolean
+    enforceSemVer: boolean
   }
 
   constructor({
@@ -44,7 +48,8 @@ export class Registry {
     features: {
       aliases = {},
       typesHeader = false,
-      importMapResolution = false
+      importMapResolution = false,
+      enforceSemVer = true
     } = {}
   }: {
     resolvers: Resolver[],
@@ -55,6 +60,7 @@ export class Registry {
       aliases?: Record<string, string>
       typesHeader?: boolean
       importMapResolution?: boolean
+      enforceSemVer?: boolean
     }
   }) {
     this.#resolvers = resolvers
@@ -74,7 +80,8 @@ export class Registry {
     this.options = {
       aliases,
       typesHeader,
-      importMapResolution
+      importMapResolution,
+      enforceSemVer
     }
   }
 
@@ -123,7 +130,7 @@ export class Registry {
           status: 404
         })
 
-      const version = getLatestVersion(versions)
+      const version = getLatestVersion(versions, this.options.enforceSemVer)
 
       data.version = version
 
@@ -135,7 +142,7 @@ export class Registry {
         return Response.redirect(resolver.getRedirectUrl(this, data as ModuleData), 307)
       }
     } else {
-      if (semver.valid(data.version) === null)
+      if (this.options.enforceSemVer && semver.valid(data.version) === null)
         return new Response('Not Found', {
           status: 404
         })
