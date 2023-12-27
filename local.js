@@ -10,10 +10,13 @@ const registry = new Registry({
   ],
   features: {
     aliases: {
-      cheetah: 'gh/cheetahstudio/cheetah'
+      authenticus: 'npm/authenticus',
+      bytes: 'npm/@boywithkeyboard/bytes',
+      testing: 'gh/dendotooo/testing',
     },
     importMapResolution: true,
-    typesHeader: true
+    typesHeader: true,
+    enforceSemVer: false
   }
 })
 
