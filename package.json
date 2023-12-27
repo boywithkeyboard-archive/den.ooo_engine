@@ -36,7 +36,8 @@
   },
   "scripts": {
     "build": "rimraf build && esbuild src/index.ts --bundle --minify --format=cjs --target=es2022 --outfile=build/index.cjs && esbuild src/index.ts --bundle --minify --format=esm --target=es2022 --outfile=build/index.mjs && esbuild src/resolvers/index.ts --bundle --minify --format=cjs --target=es2022 --outfile=build/resolvers/index.cjs && esbuild src/resolvers/index.ts --bundle --minify --format=esm --target=es2022 --outfile=build/resolvers/index.mjs && tsc",
-    "test": "npm run build && tsc && node test.mjs",
+    "prepare": "npm run build && tsc && deno task dev",
+    "test": "node --test",
     "prepublishOnly": "npm run build"
   },
   "devDependencies": {
