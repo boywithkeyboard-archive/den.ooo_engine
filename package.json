@@ -1,6 +1,6 @@
 {
   "name": "den.ooo",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "author": "Samuel Kopp (https://samuelkopp.de)",
   "license": "MIT",
   "description": "The sleek, feature-rich module registry for Deno. 📦",

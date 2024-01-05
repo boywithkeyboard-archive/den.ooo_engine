@@ -7,7 +7,7 @@
 `deno.json`
 ```json
 {
-  "den.ooo": "https://esm.sh/den.ooo@1.1.0"
+  "den.ooo": "https://esm.sh/den.ooo@1.2.0"
 }
 ```
 
