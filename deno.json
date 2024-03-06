@@ -3,7 +3,7 @@
     "dev": "export STAGE=development && deno run -A --watch local.js"
   },
   "imports": {
-    "eszip": "https://deno.land/x/eszip@v0.62.0/mod.ts",
+    "eszip": "https://deno.land/x/eszip@v0.64.2/mod.ts",
     "octokit": "https://den.ooo/npm/octokit@3.1.2",
     "semver": "https://den.ooo/npm/semver@7.6.0",
     "typebox": "https://den.ooo/npm/@sinclair/typebox@0.32.13",
