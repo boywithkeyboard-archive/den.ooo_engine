@@ -1,5 +1,5 @@
 const REGEX =
-  /(?:(?<=(?:import|export)[^`'"]*from\s+[`'"])(?<path1>[^`'"]+)(?=(?:'|"|`)))|(?:\b(?:import|export)(?:\s+|\s*\(\s*)[`'"](?<path2>[^`'"]+)[`'"])/g
+  /(?:(?<=(?:import|export)[^`'"]*from(\s+)?[`'"])(?<path1>[^`'"]+)(?=(?:'|"|`)))|(?:\b(?:import|export)(?:\s+|\s*\(\s*)[`'"](?<path2>[^`'"]+)[`'"])/g
 
 /**
  * Rewrite imports and exports in a string.
@@ -15,7 +15,7 @@ const REGEX =
  * ```
  */
 export function rewriteContent(fileContent: string, replacer: (data: { url: string }) => string) {
-  return fileContent.replace(REGEX, (_, url) => {
+  return fileContent.replace(REGEX, (url) => {
     return replacer({ url })
   })
 }
