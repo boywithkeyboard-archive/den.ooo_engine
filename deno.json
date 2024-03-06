@@ -4,10 +4,10 @@
   },
   "imports": {
     "eszip": "https://deno.land/x/eszip@v0.64.2/mod.ts",
-    "octokit": "https://den.ooo/npm/octokit@3.1.2",
-    "semver": "https://den.ooo/npm/semver@7.6.0",
-    "typebox": "https://den.ooo/npm/@sinclair/typebox@0.32.13",
-    "typebox/value": "https://den.ooo/npm/@sinclair/typebox@0.32.13/value"
+    "octokit": "https://esm.sh/octokit@3.1.2?target=es2022",
+    "semver": "https://esm.sh/semver@7.6.0?target=es2022",
+    "typebox": "https://esm.sh/@sinclair/typebox@0.32.13?target=es2022",
+    "typebox/value": "https://esm.sh/@sinclair/typebox@0.32.13/value?target=es2022"
   },
   "lock": false
 }
