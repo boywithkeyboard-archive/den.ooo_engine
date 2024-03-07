@@ -6,8 +6,8 @@
     "eszip": "https://deno.land/x/eszip@v0.64.2/mod.ts",
     "octokit": "https://esm.sh/octokit@3.1.2?target=es2022",
     "semver": "https://esm.sh/semver@7.6.0?target=es2022",
-    "typebox": "https://esm.sh/@sinclair/typebox@0.32.13?target=es2022",
-    "typebox/value": "https://esm.sh/@sinclair/typebox@0.32.13/value?target=es2022"
+    "typebox": "https://esm.sh/@sinclair/typebox@0.32.15?target=es2022",
+    "typebox/value": "https://esm.sh/@sinclair/typebox@0.32.15/value?target=es2022"
   },
   "lock": false
 }
