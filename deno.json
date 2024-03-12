@@ -1,4 +1,8 @@
 {
+  "fmt": {
+    "semiColons": false,
+    "singleQuote": true
+  },
   "tasks": {
     "dev": "export STAGE=development && deno run -A --watch local.js"
   },
