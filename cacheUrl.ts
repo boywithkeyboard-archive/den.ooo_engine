@@ -10,8 +10,9 @@ export async function cacheUrl(registry: Registry, url: string) {
   // #1 cache file
   const res = await fetch(url)
 
-  if (!res.ok)
+  if (!res.ok) {
     return
+  }
 
   const str = await res.text()
 
